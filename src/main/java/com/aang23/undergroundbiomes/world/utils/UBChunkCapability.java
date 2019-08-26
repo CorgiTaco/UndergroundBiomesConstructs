@@ -3,14 +3,13 @@ package com.aang23.undergroundbiomes.world.utils;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.Direction;
-import net.minecraft.util.text.NBTTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 
 public interface UBChunkCapability {
 
     String getUBMarker();
 
-    void setUBMarker(String faction);
+    void setUBMarker(String marker);
 
     class Default implements UBChunkCapability {
         private String replacingMarker;
@@ -20,8 +19,8 @@ public interface UBChunkCapability {
         }
 
         @Override
-        public void setUBMarker(String faction) {
-            replacingMarker = faction;
+        public void setUBMarker(String marker) {
+            replacingMarker = marker;
         }
 
         @Override
@@ -34,7 +33,7 @@ public interface UBChunkCapability {
         @Override
         public void readNBT(Capability<UBChunkCapability> capability, UBChunkCapability instance, Direction side,
                 INBT nbt) {
-            if (nbt instanceof NBTTextComponent && !nbt.getString().isEmpty())
+            if (nbt instanceof StringNBT && !nbt.getString().isEmpty())
                 instance.setUBMarker(nbt.getString());
         }
 

@@ -44,7 +44,7 @@ public class WorldChunkChecker {
 
     @SubscribeEvent
     public void attachChunkCaps(AttachCapabilitiesEvent<Chunk> e) {
-        assert UB_FIED != null;
+        //assert UB_FIED != null;
         e.addCapability(ubc_res, new ICapabilitySerializable<INBT>() {
             UBChunkCapability inst = UB_FIED.getDefaultInstance();
 
