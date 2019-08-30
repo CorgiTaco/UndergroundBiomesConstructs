@@ -1,5 +1,6 @@
 package com.aang23.undergroundbiomes.api.enums;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 
 /**
@@ -10,6 +11,8 @@ import net.minecraft.item.BlockItem;
 public interface UBBlock {
 
   BlockItem getItemBlock();
+
+  Block getThisBlock();
 
   UBStoneType getStoneType();
 

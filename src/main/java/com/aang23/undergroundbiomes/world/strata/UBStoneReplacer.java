@@ -6,12 +6,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.IChunk;
-import com.aang23.undergroundbiomes.blocks.stone.SedimentaryStone;
 import com.aang23.undergroundbiomes.config.UBConfig;
 import com.aang23.undergroundbiomes.config.WorldConfig;
 import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
 import com.aang23.undergroundbiomes.registrar.UBOreRegistrar;
-import com.aang23.undergroundbiomes.world.StoneRegistry;
+//import com.aang23.undergroundbiomes.world.StoneRegistry;
 import com.aang23.undergroundbiomes.world.strata.noise.NoiseGenerator;
 
 public abstract class UBStoneReplacer implements UBStrataColumnProvider {
@@ -58,6 +57,7 @@ public abstract class UBStoneReplacer implements UBStrataColumnProvider {
               /*
                * Skip air, water and lava
                */
+              /*
               if (currentBlock == Blocks.AIR)
                 continue;
               else if (currentBlock == Blocks.WATER)
@@ -104,7 +104,7 @@ public abstract class UBStoneReplacer implements UBStrataColumnProvider {
                 storage.setBlockState(x, y, z, UBOreRegistrar.getOreForStoneIfExists(strataBlock.getBlock(), currentBlockState), true);
 
                 continue;
-              }
+              }*/
             }
           }
         }
