@@ -54,9 +54,9 @@ public class UndergroundBiomes {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(WorldChunkChecker::preInit);
         MinecraftForge.EVENT_BUS.register(new WorldChunkChecker());
 
-        CraftingHelper.register(new ResourceLocation(modid, "cobble_recipe_enabled"), new CobbleRecipeHandler());
-        CraftingHelper.register(new ResourceLocation(modid, "stone_recipe_enabled"), new StoneRecipeHandler());
-        CraftingHelper.register(new ResourceLocation(modid, "gravel_recipe_enabled"), new GravelRecipeHandler());
+        CraftingHelper.register(new CobbleRecipeHandler());
+        CraftingHelper.register(new StoneRecipeHandler());
+        CraftingHelper.register(new GravelRecipeHandler());
 
         UBOreRegistrar.initialSetup();
 
