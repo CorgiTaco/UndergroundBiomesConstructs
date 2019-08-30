@@ -78,13 +78,16 @@ public class UBBlocks {
         for (SedimentaryVariant currentVariant : SedimentaryVariant.values()) {
             sedimentary_blocks.put(new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.STONE, currentVariant),
                     new UBStone(currentVariant));
-            sedimentary_blocks.put(new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.BRICK, currentVariant),
-                    new UBBrick(currentVariant));
-            sedimentary_blocks.put(new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.COBBLE, currentVariant),
-                    new UBCobble(currentVariant));
-            sedimentary_blocks.put(
-                    new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.COBBLE_STAIRS, currentVariant),
-                    new UBCobbleStairs(currentVariant));
+            if (currentVariant != SedimentaryVariant.LIGNITE) // No Lignite brick
+                sedimentary_blocks.put(new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.BRICK, currentVariant),
+                        new UBBrick(currentVariant));
+            if (currentVariant != SedimentaryVariant.LIGNITE) // No Lignite cobble
+                sedimentary_blocks.put(new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.COBBLE, currentVariant),
+                        new UBCobble(currentVariant));
+            if (currentVariant != SedimentaryVariant.LIGNITE) // No Lignite cobble stairs
+                sedimentary_blocks.put(
+                        new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.COBBLE_STAIRS, currentVariant),
+                        new UBCobbleStairs(currentVariant));
             sedimentary_blocks.put(
                     new Pair<UBStoneStyle, SedimentaryVariant>(UBStoneStyle.STONE_STAIRS, currentVariant),
                     new UBStoneStairs(currentVariant));
