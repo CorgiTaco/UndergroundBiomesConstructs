@@ -43,14 +43,14 @@ public class UBGravel extends GravelBlock implements UBBlock {
     public UBGravel(MetamorphicVariant metamorphic_variant) {
         super(Properties.create(Material.SAND));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(UndergroundBiomes.modid + ":metamorphic_gravel_" + metamorphic_variant.getName().toLowerCase());
     }
 
     public UBGravel(SedimentaryVariant sedimentary_variant) {
         super(Properties.create(Material.SAND));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(UndergroundBiomes.modid + ":sedimentary_gravel_" + sedimentary_variant.getName().toLowerCase());
     }
 

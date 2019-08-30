@@ -35,7 +35,7 @@ public class UBInfestedStone extends SilverfishBlock implements UBBlock {
     public UBInfestedStone(MetamorphicVariant metamorphic_variant) {
         super(Blocks.STONE, Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(
                 UndergroundBiomes.modid + ":metamorphic_infested_stone_" + metamorphic_variant.getName().toLowerCase());
     }
@@ -43,7 +43,7 @@ public class UBInfestedStone extends SilverfishBlock implements UBBlock {
     public UBInfestedStone(SedimentaryVariant sedimentary_variant) {
         super(Blocks.STONE, Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(
                 UndergroundBiomes.modid + ":sedimentary_infested_stone_" + sedimentary_variant.getName().toLowerCase());
     }

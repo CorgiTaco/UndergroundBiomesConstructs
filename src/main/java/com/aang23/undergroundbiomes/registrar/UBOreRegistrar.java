@@ -88,35 +88,32 @@ public class UBOreRegistrar {
     }
 
     public static BlockState getOreForStoneIfExists(Block inStone, BlockState original) {
-        if (!(inStone instanceof UBBlock))
+        if (!(inStone instanceof UBStone))
             return original;
-        UBBlock inBlockStone = (UBBlock) inStone;
+        UBStone inBlockStone = (UBStone) inStone;
         if (inBlockStone.getStoneType() == UBStoneType.IGNEOUS) {
-            UBStone igneousStone = (UBStone) inBlockStone;
             if (REGISTERED_ORES.containsKey(
-                    original.getBlock().getRegistryName().toString() + "/" + igneousStone.igneous_variant.getName())) {
+                    original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.getName())) {
 
                 return REGISTERED_ORES.get(
-                        original.getBlock().getRegistryName().toString() + "/" + igneousStone.igneous_variant.getName())
+                        original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.getName())
                         .getDefaultState();
             } else
                 return original;
         } else if (inBlockStone.getStoneType() == UBStoneType.METAMORPHIC) {
-            UBStone metamorphicStone = (UBStone) inBlockStone;
             if (REGISTERED_ORES.containsKey(original.getBlock().getRegistryName().toString() + "/"
-                    + metamorphicStone.metamorphic_variant.getName())) {
+                    + inBlockStone.metamorphic_variant.getName())) {
 
                 return REGISTERED_ORES.get(original.getBlock().getRegistryName().toString() + "/"
-                        + metamorphicStone.metamorphic_variant.getName()).getDefaultState();
+                        + inBlockStone.metamorphic_variant.getName()).getDefaultState();
             } else
                 return original;
         } else if (inBlockStone.getStoneType() == UBStoneType.SEDIMENTARY) {
-            UBStone sedimentaryStone = (UBStone) inBlockStone;
             if (REGISTERED_ORES.containsKey(original.getBlock().getRegistryName().toString() + "/"
-                    + sedimentaryStone.sedimentary_variant.getName())) {
+                    + inBlockStone.sedimentary_variant.getName())) {
 
                 return REGISTERED_ORES.get(original.getBlock().getRegistryName().toString() + "/"
-                        + sedimentaryStone.sedimentary_variant.getName()).getDefaultState();
+                        + inBlockStone.sedimentary_variant.getName()).getDefaultState();
             } else
                 return original;
         } else

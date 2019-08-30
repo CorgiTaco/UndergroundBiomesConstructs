@@ -1,5 +1,16 @@
 package com.aang23.undergroundbiomes;
 
+import com.aang23.undergroundbiomes.config.UBConfig;
+import com.aang23.undergroundbiomes.config.utils.CobbleRecipeHandler;
+import com.aang23.undergroundbiomes.config.utils.GravelRecipeHandler;
+import com.aang23.undergroundbiomes.config.utils.StoneRecipeHandler;
+import com.aang23.undergroundbiomes.registrar.UBOreRegistrar;
+import com.aang23.undergroundbiomes.world.WorldGenManager;
+import com.aang23.undergroundbiomes.world.utils.WorldChunkChecker;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -10,36 +21,13 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import net.minecraftforge.fml.config.ModConfig;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.aang23.undergroundbiomes.api.enums.IgneousVariant;
-import com.aang23.undergroundbiomes.api.enums.MetamorphicVariant;
-import com.aang23.undergroundbiomes.api.enums.SedimentaryVariant;
-import com.aang23.undergroundbiomes.api.enums.UBBlock;
-import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
-import com.aang23.undergroundbiomes.api.enums.UBStoneType;
-import com.aang23.undergroundbiomes.blocks.UBBrick;
-import com.aang23.undergroundbiomes.blocks.UBCobble;
-import com.aang23.undergroundbiomes.blocks.UBCobbleStairs;
-import com.aang23.undergroundbiomes.config.UBConfig;
-import com.aang23.undergroundbiomes.config.utils.CobbleRecipeHandler;
-import com.aang23.undergroundbiomes.config.utils.GravelRecipeHandler;
-import com.aang23.undergroundbiomes.config.utils.StoneRecipeHandler;
-import com.aang23.undergroundbiomes.registrar.UBOreRegistrar;
-import com.aang23.undergroundbiomes.world.WorldGenManager;
-import com.aang23.undergroundbiomes.world.utils.WorldChunkChecker;
-import com.mojang.datafixers.util.Pair;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("undergroundbiomes")

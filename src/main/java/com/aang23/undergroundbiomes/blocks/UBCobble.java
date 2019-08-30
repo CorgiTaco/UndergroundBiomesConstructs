@@ -32,14 +32,14 @@ public class UBCobble extends Block implements UBBlock {
     public UBCobble(MetamorphicVariant metamorphic_variant) {
         super(Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(UndergroundBiomes.modid + ":metamorphic_cobble_" + metamorphic_variant.getName().toLowerCase());
     }
 
     public UBCobble(SedimentaryVariant sedimentary_variant) {
         super(Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(UndergroundBiomes.modid + ":sedimentary_cobble_" + sedimentary_variant.getName().toLowerCase());
     }
 

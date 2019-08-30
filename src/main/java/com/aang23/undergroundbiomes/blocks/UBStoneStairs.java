@@ -34,7 +34,7 @@ public class UBStoneStairs extends StairsBlock implements UBBlock {
     public UBStoneStairs(MetamorphicVariant metamorphic_variant) {
         super(new UBCobble(metamorphic_variant).getDefaultState(), Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(
                 UndergroundBiomes.modid + ":metamorphic_stone_stairs_" + metamorphic_variant.getName().toLowerCase());
     }
@@ -42,7 +42,7 @@ public class UBStoneStairs extends StairsBlock implements UBBlock {
     public UBStoneStairs(SedimentaryVariant sedimentary_variant) {
         super(new UBCobble(sedimentary_variant).getDefaultState(), Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(
                 UndergroundBiomes.modid + ":sedimentary_stone_stairs_" + sedimentary_variant.getName().toLowerCase());
     }

@@ -38,14 +38,14 @@ public class UBSand extends SandBlock implements UBBlock {
     public UBSand(MetamorphicVariant metamorphic_variant) {
         super(0, Properties.create(Material.SAND));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(UndergroundBiomes.modid + ":metamorphic_sand_" + metamorphic_variant.getName().toLowerCase());
     }
 
     public UBSand(SedimentaryVariant sedimentary_variant) {
         super(0, Properties.create(Material.SAND));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(UndergroundBiomes.modid + ":sedimentary_sand_" + sedimentary_variant.getName().toLowerCase());
     }
 

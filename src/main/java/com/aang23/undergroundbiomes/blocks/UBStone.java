@@ -41,14 +41,14 @@ public class UBStone extends Block implements UBBlock {
     public UBStone(MetamorphicVariant metamorphic_variant) {
         super(Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(UndergroundBiomes.modid + ":metamorphic_stone_" + metamorphic_variant.getName().toLowerCase());
     }
 
     public UBStone(SedimentaryVariant sedimentary_variant) {
         super(Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(UndergroundBiomes.modid + ":sedimentary_stone_" + sedimentary_variant.getName().toLowerCase());
     }
 

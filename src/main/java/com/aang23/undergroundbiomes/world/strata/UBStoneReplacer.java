@@ -10,7 +10,7 @@ import com.aang23.undergroundbiomes.config.UBConfig;
 import com.aang23.undergroundbiomes.config.WorldConfig;
 import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
 import com.aang23.undergroundbiomes.registrar.UBOreRegistrar;
-//import com.aang23.undergroundbiomes.world.StoneRegistry;
+import com.aang23.undergroundbiomes.world.StoneRegistry;
 import com.aang23.undergroundbiomes.world.strata.noise.NoiseGenerator;
 
 public abstract class UBStoneReplacer implements UBStrataColumnProvider {
@@ -57,7 +57,6 @@ public abstract class UBStoneReplacer implements UBStrataColumnProvider {
               /*
                * Skip air, water and lava
                */
-              /*
               if (currentBlock == Blocks.AIR)
                 continue;
               else if (currentBlock == Blocks.WATER)
@@ -93,7 +92,7 @@ public abstract class UBStoneReplacer implements UBStrataColumnProvider {
                 // Replace with UBified version
                 BlockState strataBlock = currentBiome.getStrataBlockAtLayer(yPos + y + variation);
 
-                if (!(strataBlock.getBlock() instanceof SedimentaryStone) || UBConfig.ADVANCED.sedimentaryCobble.get())
+                if (/*!(strataBlock.getBlock() instanceof SedimentaryStone)*/false || UBConfig.ADVANCED.sedimentaryCobble.get())
                   storage.setBlockState(x, y, z,
                       StoneRegistry.getVariantForStone(strataBlock, UBStoneStyle.COBBLE).getDefaultState(), true);
                 continue;
@@ -104,7 +103,7 @@ public abstract class UBStoneReplacer implements UBStrataColumnProvider {
                 storage.setBlockState(x, y, z, UBOreRegistrar.getOreForStoneIfExists(strataBlock.getBlock(), currentBlockState), true);
 
                 continue;
-              }*/
+              }
             }
           }
         }

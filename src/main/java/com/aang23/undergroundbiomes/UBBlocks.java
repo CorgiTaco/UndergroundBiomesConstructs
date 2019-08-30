@@ -2,6 +2,7 @@ package com.aang23.undergroundbiomes;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.aang23.undergroundbiomes.api.enums.IgneousVariant;
 import com.aang23.undergroundbiomes.api.enums.MetamorphicVariant;
@@ -20,6 +21,7 @@ import com.aang23.undergroundbiomes.blocks.UBStoneStairs;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 
@@ -118,14 +120,40 @@ public class UBBlocks {
     }
 
     public static Block getBlock(UBStoneStyle style, IgneousVariant variant) {
-        return igneous_blocks.get(new Pair<UBStoneStyle, IgneousVariant>(style, variant)).getThisBlock();
+        return igneous_blocks.containsKey(new Pair<UBStoneStyle, IgneousVariant>(style, variant))
+                ? igneous_blocks.get(new Pair<UBStoneStyle, IgneousVariant>(style, variant)).getThisBlock()
+                : null;
     }
 
     public static Block getBlock(UBStoneStyle style, MetamorphicVariant variant) {
-        return metamorphic_blocks.get(new Pair<UBStoneStyle, MetamorphicVariant>(style, variant)).getThisBlock();
+        return metamorphic_blocks.containsKey(new Pair<UBStoneStyle, MetamorphicVariant>(style, variant))
+                ? metamorphic_blocks.get(new Pair<UBStoneStyle, MetamorphicVariant>(style, variant)).getThisBlock()
+                : null;
     }
 
     public static Block getBlock(UBStoneStyle style, SedimentaryVariant variant) {
-        return sedimentary_blocks.get(new Pair<UBStoneStyle, SedimentaryVariant>(style, variant)).getThisBlock();
+        return sedimentary_blocks.containsKey(new Pair<UBStoneStyle, SedimentaryVariant>(style, variant))
+                ? sedimentary_blocks.get(new Pair<UBStoneStyle, SedimentaryVariant>(style, variant)).getThisBlock()
+                : null;
+    }
+
+    public static Optional<Block> getBlockVariantForStoneIfExists(Block initialBlock, UBStoneStyle style) {
+        if (initialBlock instanceof UBStone) {
+            UBStone initialStone = (UBStone) initialBlock;
+            switch (initialStone.getStoneType()) {
+            case IGNEOUS:
+                Block blockI = getBlock(style, initialStone.igneous_variant);
+                return blockI != null ? Optional.of(blockI) : Optional.empty();
+            case METAMORPHIC:
+                Block blockM = getBlock(style, initialStone.metamorphic_variant);
+                return blockM != null ? Optional.of(blockM) : Optional.empty();
+            case SEDIMENTARY:
+                Block blockS = getBlock(style, initialStone.sedimentary_variant);
+                return blockS != null ? Optional.of(blockS) : Optional.empty();
+            default:
+                return Optional.empty();
+            }
+        } else
+            return Optional.empty();
     }
 }

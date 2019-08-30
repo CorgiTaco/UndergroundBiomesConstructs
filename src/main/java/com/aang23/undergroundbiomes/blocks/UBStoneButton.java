@@ -37,7 +37,7 @@ public class UBStoneButton extends StoneButtonBlock implements UBBlock {
     public UBStoneButton(MetamorphicVariant metamorphic_variant) {
         super(Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.METAMORPHIC;
         setRegistryName(
                 UndergroundBiomes.modid + ":metamorphic_stone_button_" + metamorphic_variant.getName().toLowerCase());
     }
@@ -45,7 +45,7 @@ public class UBStoneButton extends StoneButtonBlock implements UBBlock {
     public UBStoneButton(SedimentaryVariant sedimentary_variant) {
         super(Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
-        this.stone_type = UBStoneType.IGNEOUS;
+        this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(
                 UndergroundBiomes.modid + ":sedimentary_stone_button_" + sedimentary_variant.getName().toLowerCase());
     }
