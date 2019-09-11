@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GravelBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -52,6 +53,11 @@ public class UBGravel extends GravelBlock implements UBBlock {
         this.sedimentary_variant = sedimentary_variant;
         this.stone_type = UBStoneType.SEDIMENTARY;
         setRegistryName(UndergroundBiomes.modid + ":sedimentary_gravel_" + sedimentary_variant.getName().toLowerCase());
+    }
+
+    @Override
+    public SoundType getSoundType(BlockState state) {
+        return SoundType.SAND;
     }
 
     @Override
