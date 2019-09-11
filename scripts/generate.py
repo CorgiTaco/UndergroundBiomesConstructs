@@ -1,5 +1,6 @@
 import loot_tables
 import recipes
+import blockstates
 
 # Loot tables
 loot_tables.generate_gravel_loot()
@@ -17,3 +18,6 @@ recipes.generate_stone_brick_recipes()
 recipes.generate_cobble_stair_recipes()
 recipes.generate_stone_stair_recipes()
 recipes.generate_stone_button_recipes()
+
+# Blockstates
+blockstates.generate_stone_button_blockstates()

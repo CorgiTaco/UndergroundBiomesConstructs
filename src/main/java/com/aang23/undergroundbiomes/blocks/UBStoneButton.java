@@ -14,11 +14,8 @@ import net.minecraft.block.StoneButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.ToolType;
 
 public class UBStoneButton extends StoneButtonBlock implements UBBlock {
 
