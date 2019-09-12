@@ -21,3 +21,11 @@ recipes.generate_stone_button_recipes()
 
 # Blockstates
 blockstates.generate_stone_button_blockstates()
+blockstates.generate_brick_blockstates()
+blockstates.generate_cobble_blockstates()
+blockstates.generate_stone_blockstates()
+blockstates.generate_stone_stairs_blockstates()
+blockstates.generate_cobble_stairs_blockstates()
+blockstates.generate_gravel_blockstates()
+blockstates.generate_sand_blockstates()
+blockstates.generate_infested_stone_blockstates()
