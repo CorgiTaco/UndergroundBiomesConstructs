@@ -119,7 +119,7 @@ def generate_cobble_wall_recipes():
         for variant in ub_enums.ubc_types_and_variants[stype]:
             block_name_wall = stype + "_cobble_wall_" + variant
             block_name_stone = stype + "_cobble_" + variant
-            final_file = data.replace("itemin", "undergroundbiomes:" + block_name_stone).replace("itemout", "undergroundbiomes:" + block_name_button)
+            final_file = data.replace("itemin", "undergroundbiomes:" + block_name_stone).replace("itemout", "undergroundbiomes:" + block_name_wall)
             print(block_name_wall)
             text_file = open(folder + block_name_wall + ".json", "w")
             text_file.write(final_file)
