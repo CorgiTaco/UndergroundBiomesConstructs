@@ -242,6 +242,33 @@
     "block.undergroundbiomes.sedimentary_stone_button_greywacke": "Greywacke Stone Button",
     "block.undergroundbiomes.sedimentary_stone_button_chert": "Chert Stone Button",
 
+    "block.undergroundbiomes.igneous_cobble_wall_red_granite": "Red Granite Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_black_granite": "Black Granite Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_rhyolite": "Rhyolite Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_andesite": "Andesite Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_gabbro": "Gabbro Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_basalt": "Basalt Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_komatiite": "Komatiite Cobble Wall",
+    "block.undergroundbiomes.igneous_cobble_wall_dacite": "Dacite Cobble Wall",
+
+    "block.undergroundbiomes.metamorphic_cobble_wall_gneiss": "Gneiss Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_eclogite": "Eclogite Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_marble": "Marble Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_quartzite": "Quartzite Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_blueschist": "Blueschist Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_greenschist": "Greenschist Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_soapstone": "Soapstone Cobble Wall",
+    "block.undergroundbiomes.metamorphic_cobble_wall_migmatite": "Migmatite Cobble Wall",
+
+    "block.undergroundbiomes.sedimentary_cobble_wall_limestone": "Limestone Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_chalk": "Chalk Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_shale": "Shale Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_siltstone": "Siltstone Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_lignite": "Lignite Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_dolomite": "Dolomite Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_greywacke": "Greywacke Cobble Wall",
+    "block.undergroundbiomes.sedimentary_cobble_wall_chert": "Chert Cobble Wall",
+
     "itemGroup.tabUndergroundBiomesBlocks": "Underground Biomes",
     "itemGroup.tabUndergroundBiomesOres": "Underground Biomes Ores",
 
