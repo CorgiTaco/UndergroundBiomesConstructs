@@ -1,0 +1,28 @@
+{
+    "replace": false,
+    "values": [
+        "undergroundbiomes:igneous_cobble_wall_red_granite",
+        "undergroundbiomes:igneous_cobble_wall_black_granite",
+        "undergroundbiomes:igneous_cobble_wall_rhyolite",
+        "undergroundbiomes:igneous_cobble_wall_andesite",
+        "undergroundbiomes:igneous_cobble_wall_gabbro",
+        "undergroundbiomes:igneous_cobble_wall_basalt",
+        "undergroundbiomes:igneous_cobble_wall_komatiite",
+        "undergroundbiomes:igneous_cobble_wall_dacite",
+        "undergroundbiomes:metamorphic_cobble_wall_gneiss",
+        "undergroundbiomes:metamorphic_cobble_wall_eclogite",
+        "undergroundbiomes:metamorphic_cobble_wall_marble",
+        "undergroundbiomes:metamorphic_cobble_wall_quartzite",
+        "undergroundbiomes:metamorphic_cobble_wall_blueschist",
+        "undergroundbiomes:metamorphic_cobble_wall_greenschist",
+        "undergroundbiomes:metamorphic_cobble_wall_soapstone",
+        "undergroundbiomes:metamorphic_cobble_wall_migmatite",
+        "undergroundbiomes:sedimentary_cobble_wall_limestone",
+        "undergroundbiomes:sedimentary_cobble_wall_chalk",
+        "undergroundbiomes:sedimentary_cobble_wall_shale",
+        "undergroundbiomes:sedimentary_cobble_wall_siltstone",
+        "undergroundbiomes:sedimentary_cobble_wall_dolomite",
+        "undergroundbiomes:sedimentary_cobble_wall_greywacke",
+        "undergroundbiomes:sedimentary_cobble_wall_chert"
+    ]
+}
