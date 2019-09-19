@@ -72,6 +72,8 @@ public class UBOreConfigManager {
 
                 String name = (String) oreConfig.get("name"); // TODO improve
 
+                System.out.println(name);
+
                 nameCache.put(currentOre, name);
 
                 registerOre(toRegister, overlay, variant);
