@@ -29,13 +29,16 @@ public class UBOre extends Block implements UBBlock {
     public BlockState baseState;
     public UBStoneType stone_type;
     public String sub_stone_name;
+    public final boolean useAlphaBlending;
 
-    public UBOre(Block baseOre, BlockState baseState, UBStoneType stone_type, String sub_stone_name) {
+    public UBOre(Block baseOre, BlockState baseState, UBStoneType stone_type, String sub_stone_name,
+            boolean useAlphaBlending) {
         super(Properties.create(baseOre.getMaterial(baseState)));
         this.baseOre = baseOre;
         this.baseState = baseState;
         this.stone_type = stone_type;
         this.sub_stone_name = sub_stone_name;
+        this.useAlphaBlending = useAlphaBlending;
         setRegistryName(UndergroundBiomes.modid + ":" + stone_type + "_ore_"
                 + baseOre.getRegistryName().toString().replace(":", "_") + "_" + sub_stone_name);
     }
@@ -59,7 +62,7 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+        return useAlphaBlending ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
     @Override

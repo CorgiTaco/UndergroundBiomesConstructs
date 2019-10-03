@@ -22,6 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
+// TODO Maybe move to some kind of UBOreConfig class? 
 public class UBOreConfigManager {
     // Folders
     public static File mainFolder = new File(UBOreRegistrar.mcdir, "config/undergroundbiomes");
@@ -32,6 +33,7 @@ public class UBOreConfigManager {
     public static Map<String, String> overlayCache = new HashMap<String, String>();
     public static Map<String, String> stoneVariantCache = new HashMap<String, String>();
     public static Map<String, String> nameCache = new HashMap<String, String>(); // TODO improve
+    public static Map<String, Boolean> alphaBlendingCache = new HashMap<String, Boolean>();
 
     public static void setupConfigs() {
         if (!mainFolder.exists()) {
@@ -41,10 +43,11 @@ public class UBOreConfigManager {
         readJsons();
     }
 
-    private static void registerOre(Block ore, String overlay, String variant) {
-        UBOreRegistrar.registerOre(ore);
+    private static void registerOre(Block ore, String overlay, String variant, boolean useAlphaBlending) {
         overlayCache.put(ore.getRegistryName().toString(), overlay);
         stoneVariantCache.put(ore.getRegistryName().toString(), variant);
+        alphaBlendingCache.put(ore.getRegistryName().toString(), useAlphaBlending);
+        UBOreRegistrar.registerOre(ore);
     }
 
     private static void readJsons() {
@@ -67,16 +70,17 @@ public class UBOreConfigManager {
                 Block toRegister = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(currentOre));
                 Map oreConfig = new HashMap<>();
                 oreConfig = (Map) currentConfig.get(currentOre);
+
                 String overlay = (String) oreConfig.get("overlay");
                 String variant = (String) oreConfig.get("variant");
-
                 String name = (String) oreConfig.get("name"); // TODO improve
-
-                System.out.println(name);
+                boolean useAlphaBlending = oreConfig.containsKey("alphaBlend")
+                        ? Boolean.parseBoolean((String) oreConfig.get("alphaBlend"))
+                        : false;
 
                 nameCache.put(currentOre, name);
 
-                registerOre(toRegister, overlay, variant);
+                registerOre(toRegister, overlay, variant, useAlphaBlending);
             }
 
             // Other mods can register ores in this event
@@ -87,7 +91,8 @@ public class UBOreConfigManager {
     private static void extractDefaults() {
         try {
             File defaultsZip = new File("defaults.zip");
-            InputStream link = Thread.currentThread().getContextClassLoader().getResourceAsStream(defaultsZip.getName());
+            InputStream link = Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream(defaultsZip.getName());
             Files.copy(link, defaultsZip.getAbsoluteFile().toPath());
             ZipFile zipFile = new ZipFile(defaultsZip);
             zipFile.extractAll(mainFolder.getAbsolutePath());

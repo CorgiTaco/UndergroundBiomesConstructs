@@ -31,19 +31,22 @@ public class UBOreRegistrar {
     public static void registerOre(Block toRegisterAsOre) {
         for (IgneousVariant currentVariant : IgneousVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.IGNEOUS,
-                    currentVariant.getName());
+                    currentVariant.getName(),
+                    UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
             REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
         }
 
         for (MetamorphicVariant currentVariant : MetamorphicVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.METAMORPHIC,
-                    currentVariant.getName());
+                    currentVariant.getName(),
+                    UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
             REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
         }
 
         for (SedimentaryVariant currentVariant : SedimentaryVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.SEDIMENTARY,
-                    currentVariant.getName());
+                    currentVariant.getName(),
+                    UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
             REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
         }
     }
