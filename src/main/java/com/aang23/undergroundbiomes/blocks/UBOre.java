@@ -97,50 +97,42 @@ public class UBOre extends Block implements UBBlock {
     @Override
     public BlockState getStateForPlacement(BlockState state, Direction facing, BlockState state2, IWorld world,
             BlockPos pos1, BlockPos pos2, Hand hand) {
-        // TODO Auto-generated method stub
         return baseOre.getStateForPlacement(state, facing, state2, world, pos1, pos2, hand);
     }
 
     @Override
     public BlockState getStateAtViewpoint(BlockState state, IBlockReader world, BlockPos pos, Vec3d viewpoint) {
-        // TODO Auto-generated method stub
         return baseOre.getStateAtViewpoint(state, world, pos, viewpoint);
     }
 
     @Override
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-        // TODO Auto-generated method stub
         return baseOre.getContainer(state, worldIn, pos);
     }
 
     @Override
     public BlockState getExtendedState(BlockState state, IBlockReader world, BlockPos pos) {
-        // TODO Auto-generated method stub
         return baseOre.getExtendedState(state, world, pos);
     }
 
     @Override
     public StateContainer<Block, BlockState> getStateContainer() {
-        // TODO Auto-generated method stub
         return baseOre.getStateContainer();
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        // TODO Auto-generated method stub
         return baseOre.getStateForPlacement(context);
     }
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        // TODO Auto-generated method stub
         baseOre.onBlockClicked(state, worldIn, pos, player);
     }
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
             BlockRayTraceResult hit) {
-        // TODO Auto-generated method stub
         return baseOre.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
@@ -182,7 +174,7 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public int getLightValue(BlockState state) {
-        return 0; // TODO fix
+        return baseState.getLightValue();
     }
 
     @Override
@@ -197,7 +189,7 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        baseOre.onEntityWalk(worldIn, pos, entityIn); // TODO fix
+        baseOre.onEntityWalk(worldIn, pos, entityIn);
     }
 
     @Override
