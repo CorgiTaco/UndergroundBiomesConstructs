@@ -87,7 +87,7 @@ public class UBOre extends Block implements UBBlock {
             fillStateMethod = baseOre.getClass().getDeclaredMethod("fillStateContainer",
                     new Class[] { net.minecraft.state.StateContainer.Builder.class });
             fillStateMethod.setAccessible(true);
-            fillStateMethod.invoke(Blocks.REDSTONE_ORE, builder);
+            fillStateMethod.invoke(baseOre, builder);
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException e) {
             e.printStackTrace();
