@@ -70,6 +70,7 @@ public class UBConfig {
         public final ForgeConfigSpec.BooleanValue stoneToVanillaRecipe;
         public final ForgeConfigSpec.BooleanValue cobbleToVanillaRecipe;
         public final ForgeConfigSpec.BooleanValue gravelToVanillaRecipe;
+        public final ForgeConfigSpec.BooleanValue sandToVanillaRecipe;
 
         Recipes(ForgeConfigSpec.Builder builder) {
             builder.push("Recipes");
@@ -77,6 +78,7 @@ public class UBConfig {
             stoneToVanillaRecipe = builder.comment("Should a recipe to vanilla stone be available ?").define("stoneToVanillaRecipe", true);
             cobbleToVanillaRecipe = builder.comment("Should a recipe to vanilla cobblestone be available ?").define("cobbleToVanillaRecipe", true);
             gravelToVanillaRecipe = builder.comment("Should a recipe to vanilla gravel be available ?").define("gravelToVanillaRecipe", true);
+            sandToVanillaRecipe = builder.comment("Should a recipe to vanilla sand be available ?").define("sandToVanillaRecipe", true);
 
             builder.pop();
         }
