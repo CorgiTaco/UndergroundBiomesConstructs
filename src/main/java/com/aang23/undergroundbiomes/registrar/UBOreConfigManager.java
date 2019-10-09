@@ -67,20 +67,24 @@ public class UBOreConfigManager {
 
             for (Object currentOreObj : currentConfig.keySet()) {
                 String currentOre = (String) currentOreObj;
-                Block toRegister = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(currentOre));
-                Map oreConfig = new HashMap<>();
-                oreConfig = (Map) currentConfig.get(currentOre);
 
-                String overlay = (String) oreConfig.get("overlay");
-                String variant = (String) oreConfig.get("variant");
-                String name = (String) oreConfig.get("name"); // TODO improve
-                boolean useAlphaBlending = oreConfig.containsKey("alphaBlend")
-                        ? Boolean.parseBoolean((String) oreConfig.get("alphaBlend"))
-                        : false;
+                // Check that the ore we are registering actually exists
+                if (ForgeRegistries.BLOCKS.containsKey(new ResourceLocation(currentOre))) {
+                    Block toRegister = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(currentOre));
+                    Map oreConfig = new HashMap<>();
+                    oreConfig = (Map) currentConfig.get(currentOre);
 
-                nameCache.put(currentOre, name);
+                    String overlay = (String) oreConfig.get("overlay");
+                    String variant = (String) oreConfig.get("variant");
+                    String name = (String) oreConfig.get("name"); // TODO improve
+                    boolean useAlphaBlending = oreConfig.containsKey("alphaBlend")
+                            ? Boolean.parseBoolean((String) oreConfig.get("alphaBlend"))
+                            : false;
 
-                registerOre(toRegister, overlay, variant, useAlphaBlending);
+                    nameCache.put(currentOre, name);
+
+                    registerOre(toRegister, overlay, variant, useAlphaBlending);
+                }
             }
 
             // Other mods can register ores in this event

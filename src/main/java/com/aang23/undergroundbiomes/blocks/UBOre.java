@@ -45,7 +45,6 @@ public class UBOre extends Block implements UBBlock {
     public UBOre(Block baseOre, BlockState baseState, UBStoneType stone_type, String sub_stone_name,
             boolean useAlphaBlending) {
         super(Properties.create(baseOre.getMaterial(baseState)));
-        System.out.println(baseOre);
         this.baseOre = baseOre;
         this.baseState = baseState;
         this.stone_type = stone_type;
@@ -74,10 +73,12 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     protected void fillStateContainer(net.minecraft.state.StateContainer.Builder<Block, BlockState> builder) {
+
+        super.fillStateContainer(builder);
+
         // This method gets called in our parent's constructor... So this would crash
         // since baseOre would be null
         if (baseOre == null) {
-            super.fillStateContainer(builder);
             return;
         }
 
@@ -92,6 +93,8 @@ public class UBOre extends Block implements UBBlock {
                 | InvocationTargetException e) {
             e.printStackTrace();
         }
+
+        System.out.println(baseOre);
     }
 
     @Override
@@ -174,7 +177,10 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public int getLightValue(BlockState state) {
-        return baseState.getLightValue();
+        if (baseOre == null)
+            return 0;
+        else
+            return baseState.getLightValue();
     }
 
     @Override
