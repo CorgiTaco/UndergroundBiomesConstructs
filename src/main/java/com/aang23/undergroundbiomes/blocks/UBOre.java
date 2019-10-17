@@ -36,7 +36,7 @@ import net.minecraft.world.storage.loot.LootContext.Builder;
 import net.minecraftforge.common.ToolType;
 
 public class UBOre extends Block implements UBBlock {
-    public Block baseOre;
+    public Block baseOre = Blocks.REDSTONE_ORE;
     public BlockState baseState;
     public UBStoneType stone_type;
     public String sub_stone_name;
@@ -73,6 +73,8 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     protected void fillStateContainer(net.minecraft.state.StateContainer.Builder<Block, BlockState> builder) {
+
+        baseOre = Blocks.REDSTONE_ORE;
 
         super.fillStateContainer(builder);
 
@@ -177,8 +179,8 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public int getLightValue(BlockState state) {
-        if (baseOre == null)
-            return 0;
+        if (baseState == null)
+            return super.getLightValue(state);
         else
             return baseState.getLightValue();
     }

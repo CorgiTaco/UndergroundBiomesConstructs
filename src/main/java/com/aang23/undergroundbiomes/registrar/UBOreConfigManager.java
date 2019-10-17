@@ -78,7 +78,7 @@ public class UBOreConfigManager {
                     String variant = (String) oreConfig.get("variant");
                     String name = (String) oreConfig.get("name"); // TODO improve
                     boolean useAlphaBlending = oreConfig.containsKey("alphaBlend")
-                            ? Boolean.parseBoolean((String) oreConfig.get("alphaBlend"))
+                            ? (boolean) oreConfig.get("alphaBlend")
                             : false;
 
                     nameCache.put(currentOre, name);
