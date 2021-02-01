@@ -4,7 +4,6 @@ import com.aang23.undergroundbiomes.UndergroundBiomes;
 import com.aang23.undergroundbiomes.api.enums.UBBlock;
 import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
 import com.aang23.undergroundbiomes.api.enums.UBStoneType;
-import com.aang23.undergroundbiomes.helpers.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.RenderType;
@@ -55,6 +54,7 @@ public class UBOre extends Block implements UBBlock {
             BLOCK_TO_RENDER_TYPE.put(this, RenderType.getCutoutMipped());
         else
             BLOCK_TO_RENDER_TYPE.put(this, RenderType.getSolid());
+
     }
 
     @Override
@@ -76,72 +76,102 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        if (baseOre == null)
-            return;
-
-        baseOre.getDefaultState().getProperties().forEach(builder::add);
+        if (baseOre != null)
+            baseOre.getStateContainer().getProperties().forEach(builder::add);
     }
 
 
     @Override
     public BlockState getStateAtViewpoint(BlockState state, IBlockReader world, BlockPos pos, Vector3d viewpoint) {
-        return baseOre.getStateAtViewpoint(state, world, pos, viewpoint);
+        if (baseOre == null)
+            return super.getStateAtViewpoint(state, world, pos, viewpoint);
+        else
+            return baseOre.getStateAtViewpoint(state, world, pos, viewpoint);
     }
 
     @Override
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
-        return baseOre.getContainer(state, worldIn, pos);
+        if (baseOre == null)
+            return super.getContainer(state, worldIn, pos);
+        else
+            return baseOre.getContainer(state, worldIn, pos);
     }
 
     @Override
     public StateContainer<Block, BlockState> getStateContainer() {
-        return baseOre.getStateContainer();
+        if (baseOre == null)
+            return super.getStateContainer();
+        else
+            return baseOre.getStateContainer();
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return baseOre.getStateForPlacement(context);
+        if (baseOre == null)
+            return super.getStateForPlacement(context);
+        else
+            return baseOre.getStateForPlacement(context);
     }
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        baseOre.onBlockClicked(state, worldIn, pos, player);
+        if (baseOre == null)
+            super.onBlockClicked(state, worldIn, pos, player);
+        else
+            baseOre.onBlockClicked(state, worldIn, pos, player);
     }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        return baseOre.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        if (baseOre == null)
+            return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        else
+            return baseOre.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     @Override
-    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, TileEntity te,
-                             ItemStack stack) {
+    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, TileEntity te, ItemStack stack) {
         super.harvestBlock(worldIn, player, pos, state, te, stack);
     }
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        return baseOre.getDrops(state, builder);
+        if (baseOre == null)
+            return super.getDrops(state, builder);
+        else
+            return baseOre.getDrops(state, builder);
     }
 
     @Override
     public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
-        return baseOre.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+        if (baseOre == null)
+            return super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+        else
+            return baseOre.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
     }
 
     @Override
     public int getHarvestLevel(BlockState state) {
-        return baseOre.getHarvestLevel(state);
+        if (baseOre == null)
+            return super.getHarvestLevel(state);
+        else
+            return baseOre.getHarvestLevel(state);
     }
 
     @Override
     public ToolType getHarvestTool(BlockState state) {
-        return baseOre.getHarvestTool(state);
+        if (baseOre == null)
+            return super.getHarvestTool(state);
+        else
+            return baseOre.getHarvestTool(state);
     }
 
     @Override
     public float getExplosionResistance() {
-        return baseOre.getExplosionResistance();
+        if (baseOre == null)
+            return super.getExplosionResistance();
+        else
+            return baseOre.getExplosionResistance();
     }
 
     @Override
@@ -154,22 +184,34 @@ public class UBOre extends Block implements UBBlock {
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        baseOre.onBlockHarvested(worldIn, pos, state, player);
+        if (baseOre == null)
+            super.onBlockHarvested(worldIn, pos, state, player);
+        else
+            baseOre.onBlockHarvested(worldIn, pos, state, player);
     }
 
     @Override
     public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
-        return baseOre.getExpDrop(state, world, pos, fortune, silktouch);
+        if (baseOre == null)
+            return super.getExpDrop(state, world, pos, fortune, silktouch);
+        else
+            return baseOre.getExpDrop(state, world, pos, fortune, silktouch);
     }
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        baseOre.onEntityWalk(worldIn, pos, entityIn);
+        if (baseOre == null)
+            super.onEntityWalk(worldIn, pos, entityIn);
+        else
+            baseOre.onEntityWalk(worldIn, pos, entityIn);
     }
 
     @Override
     public void onPlayerDestroy(IWorld worldIn, BlockPos pos, BlockState state) {
-        baseOre.onPlayerDestroy(worldIn, pos, state);
+        if (baseOre == null)
+            super.onPlayerDestroy(worldIn, pos, state);
+        else
+            baseOre.onPlayerDestroy(worldIn, pos, state);
     }
 
     @Override
