@@ -19,7 +19,7 @@ public class UBConfig {
             builder.push("General");
 
             ubChunkKey = builder.comment("The sring used to mark chunks as UB-fied. Change only if you want UBC to redo everything.").define("ubChunkKey", "ub");
-            dimensionList = builder.comment("The list of dimensions ids. Must be separated by a comma (,). Whitelist.").define("dimensionList", "0");
+            dimensionList = builder.comment("The list of dimension string ids. Must be separated by a comma (,). Whitelist.").define("dimensionList", "minecraft:overworld");
 
             builder.pop();
         }

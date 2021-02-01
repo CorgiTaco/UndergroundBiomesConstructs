@@ -10,6 +10,6 @@ public class FossilPiece extends Item {
     public FossilPiece(FossilVariant variant) {
         super(new Properties().group(UndergroundBiomes.CREATIVE_TAB).defaultMaxDamage(0).maxStackSize(16));
         fossil_variant = variant;
-        setRegistryName(UndergroundBiomes.modid + ":" + "fossil_piece_" + fossil_variant.toString());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":" + "fossil_piece_" + fossil_variant.toString());
     }
 }

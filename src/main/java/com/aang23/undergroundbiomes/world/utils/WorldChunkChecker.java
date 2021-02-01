@@ -2,7 +2,6 @@ package com.aang23.undergroundbiomes.world.utils;
 
 import com.aang23.undergroundbiomes.UndergroundBiomes;
 import com.aang23.undergroundbiomes.config.UBConfig;
-
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -13,11 +12,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class WorldChunkChecker {
-    public static final String MODID = UndergroundBiomes.modid;
+    public static final String MODID = UndergroundBiomes.MOD_ID;
 
     @CapabilityInject(UBChunkCapability.class)
     public static final Capability<UBChunkCapability> UB_FIED = null;

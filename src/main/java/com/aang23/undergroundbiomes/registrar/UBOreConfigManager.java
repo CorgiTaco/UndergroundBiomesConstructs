@@ -96,7 +96,7 @@ public class UBOreConfigManager {
         try {
             File defaultsZip = new File("defaults.zip");
             InputStream link = Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream(defaultsZip.getName());
+                    .getResourceAsStream(defaultsZip.toString());
             Files.copy(link, defaultsZip.getAbsoluteFile().toPath());
             ZipFile zipFile = new ZipFile(defaultsZip);
             zipFile.extractAll(mainFolder.getAbsolutePath());

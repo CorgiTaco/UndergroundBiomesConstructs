@@ -1,17 +1,12 @@
 package com.aang23.undergroundbiomes.registrar;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import com.aang23.undergroundbiomes.UndergroundBiomes;
 import com.cedarsoftware.util.io.JsonWriter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
+
+import java.io.*;
 
 public class UBPackGenerator {
 
@@ -86,7 +81,7 @@ public class UBPackGenerator {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(
-                    modelsDir.toString() + "/" + oreName.replace(UndergroundBiomes.modid + ":", "") + ".json");
+                    modelsDir.toString() + "/" + oreName.replace(UndergroundBiomes.MOD_ID + ":", "") + ".json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -106,12 +101,12 @@ public class UBPackGenerator {
             e.printStackTrace();
         }
         content = content.replace("#oremodel#",
-                UndergroundBiomes.modid + ":block/" + oreName.replace(UndergroundBiomes.modid + ":", ""));
+                UndergroundBiomes.MOD_ID + ":block/" + oreName.replace(UndergroundBiomes.MOD_ID + ":", ""));
 
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(
-                    itemModelsDir.toString() + "/" + oreName.replace(UndergroundBiomes.modid + ":", "") + ".json");
+                    itemModelsDir.toString() + "/" + oreName.replace(UndergroundBiomes.MOD_ID + ":", "") + ".json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -131,12 +126,12 @@ public class UBPackGenerator {
             e.printStackTrace();
         }
         content = content.replace("#oremodel#",
-                UndergroundBiomes.modid + ":block/" + oreName.replace(UndergroundBiomes.modid + ":", ""));
+                UndergroundBiomes.MOD_ID + ":block/" + oreName.replace(UndergroundBiomes.MOD_ID + ":", ""));
 
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(
-                    blockstatesDir.toString() + "/" + oreName.replace(UndergroundBiomes.modid + ":", "") + ".json");
+                    blockstatesDir.toString() + "/" + oreName.replace(UndergroundBiomes.MOD_ID + ":", "") + ".json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -149,7 +144,7 @@ public class UBPackGenerator {
     private JSONObject langfile = new JSONObject();
 
     public void createLangEntryForItem(String oreName, String oreTranslation) {
-        langfile.put("block." + UndergroundBiomes.modid + "." + oreName.replace(UndergroundBiomes.modid + ":", ""),
+        langfile.put("block." + UndergroundBiomes.MOD_ID + "." + oreName.replace(UndergroundBiomes.MOD_ID + ":", ""),
                 oreTranslation);
     }
 

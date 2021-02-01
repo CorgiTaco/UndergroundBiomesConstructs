@@ -40,8 +40,7 @@ public enum IgneousVariant implements IStringSerializable, Variant<IgneousVarian
   }
 
   @Override
-  public String getName() {
-    return toString();
+  public String getString() {
+    return name().toLowerCase();
   }
-
 }

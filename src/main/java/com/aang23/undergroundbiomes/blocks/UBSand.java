@@ -1,19 +1,10 @@
 package com.aang23.undergroundbiomes.blocks;
 
 import com.aang23.undergroundbiomes.UndergroundBiomes;
-import com.aang23.undergroundbiomes.api.enums.IgneousVariant;
-import com.aang23.undergroundbiomes.api.enums.MetamorphicVariant;
-import com.aang23.undergroundbiomes.api.enums.SedimentaryVariant;
-import com.aang23.undergroundbiomes.api.enums.UBBlock;
-import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
-import com.aang23.undergroundbiomes.api.enums.UBStoneType;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SandBlock;
-import net.minecraft.block.SoundType;
+import com.aang23.undergroundbiomes.api.enums.*;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
@@ -33,21 +24,21 @@ public class UBSand extends SandBlock implements UBBlock {
         super(0, Properties.create(Material.SAND));
         this.igneous_variant = igneous_variant;
         this.stone_type = UBStoneType.IGNEOUS;
-        setRegistryName(UndergroundBiomes.modid + ":igneous_sand_" + igneous_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":igneous_sand_" + igneous_variant.toString().toLowerCase());
     }
 
     public UBSand(MetamorphicVariant metamorphic_variant) {
         super(0, Properties.create(Material.SAND));
         this.metamorphic_variant = metamorphic_variant;
         this.stone_type = UBStoneType.METAMORPHIC;
-        setRegistryName(UndergroundBiomes.modid + ":metamorphic_sand_" + metamorphic_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":metamorphic_sand_" + metamorphic_variant.toString().toLowerCase());
     }
 
     public UBSand(SedimentaryVariant sedimentary_variant) {
         super(0, Properties.create(Material.SAND));
         this.sedimentary_variant = sedimentary_variant;
         this.stone_type = UBStoneType.SEDIMENTARY;
-        setRegistryName(UndergroundBiomes.modid + ":sedimentary_sand_" + sedimentary_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":sedimentary_sand_" + sedimentary_variant.toString().toLowerCase());
     }
 
     @Override
@@ -63,7 +54,7 @@ public class UBSand extends SandBlock implements UBBlock {
     @Override
     public BlockItem getItemBlock() {
         BlockItem itemBlock = new BlockItem(this, new Item.Properties().group(UndergroundBiomes.CREATIVE_TAB));
-        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.modid + ":", ""));
+        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.MOD_ID + ":", ""));
         return itemBlock;
     }
 
@@ -78,8 +69,8 @@ public class UBSand extends SandBlock implements UBBlock {
     }
 
     @Override
-    public float getBlockHardness(BlockState blockState, IBlockReader worldIn, BlockPos pos) {
-        return Blocks.SAND.getBlockHardness(blockState, worldIn, pos);
+    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+        return Blocks.SAND.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
     }
 
     @Override

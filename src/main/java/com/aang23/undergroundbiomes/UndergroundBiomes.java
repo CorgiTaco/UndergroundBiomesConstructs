@@ -1,5 +1,6 @@
 package com.aang23.undergroundbiomes;
 
+import com.aang23.undergroundbiomes.blocks.UBOre;
 import com.aang23.undergroundbiomes.config.UBConfig;
 import com.aang23.undergroundbiomes.config.utils.CobbleRecipeHandler;
 import com.aang23.undergroundbiomes.config.utils.GravelRecipeHandler;
@@ -7,14 +8,12 @@ import com.aang23.undergroundbiomes.config.utils.StoneRecipeHandler;
 import com.aang23.undergroundbiomes.registrar.UBOreRegistrar;
 import com.aang23.undergroundbiomes.world.WorldGenManager;
 import com.aang23.undergroundbiomes.world.utils.WorldChunkChecker;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,14 +27,16 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("undergroundbiomes")
 public class UndergroundBiomes {
-    public static String modid = "undergroundbiomes";
+    public static String MOD_ID = "undergroundbiomes";
     public static final ItemGroup CREATIVE_TAB = new UndergroundBiomesItemGroup();
     public static final ItemGroup ORES_CREATIVE_TAB = new UndergroundBiomesItemGroupOres();
-    private static final Logger LOGGER = LogManager.getLogger(modid);
+    private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public UndergroundBiomes() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, UBConfig.SPEC);
@@ -65,15 +66,16 @@ public class UndergroundBiomes {
 
     private void setup(final FMLCommonSetupEvent event) {
         // Register a WorldGenManager for each enabled dimension
-        String dimsIds[] = UBConfig.GENERAL.dimensionList.get().split(",");
+        String[] dimsIds = UBConfig.GENERAL.dimensionList.get().split(",");
         for (String dimId : dimsIds) {
-            MinecraftForge.EVENT_BUS.register(new WorldGenManager(Integer.parseInt(dimId)));
+            MinecraftForge.EVENT_BUS.register(new WorldGenManager(dimId));
             LOGGER.info("Enabled UndergroundBiomes for dim " + dimId);
         }
-        // MinecraftForge.EVENT_BUS.register(new WorldGenManager(0));
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        UBOre.BLOCK_TO_RENDER_TYPE.forEach(RenderTypeLookup::setRenderLayer);
+
         UBOreRegistrar.registerPack(event);
         event.getMinecraftSupplier().get().reloadResources();
     }

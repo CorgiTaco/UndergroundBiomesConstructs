@@ -1,18 +1,13 @@
 package com.aang23.undergroundbiomes.blocks;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
-
 import com.aang23.undergroundbiomes.UndergroundBiomes;
 import com.aang23.undergroundbiomes.api.enums.UBBlock;
 import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
 import com.aang23.undergroundbiomes.api.enums.UBStoneType;
-
-import net.minecraft.block.AnvilBlock;
+import com.aang23.undergroundbiomes.helpers.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -20,38 +15,46 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.Direction;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext.Builder;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nullable;
+import java.util.IdentityHashMap;
+import java.util.List;
+
 public class UBOre extends Block implements UBBlock {
-    public Block baseOre = Blocks.REDSTONE_ORE;
+    @Nullable
+    public Block baseOre;
     public BlockState baseState;
     public UBStoneType stone_type;
     public String sub_stone_name;
     public final boolean useAlphaBlending;
 
-    public UBOre(Block baseOre, BlockState baseState, UBStoneType stone_type, String sub_stone_name,
-            boolean useAlphaBlending) {
-        super(Properties.create(baseOre.getMaterial(baseState)));
+    public static final IdentityHashMap<Block, RenderType> BLOCK_TO_RENDER_TYPE = new IdentityHashMap<>();
+
+    public UBOre(@Nullable Block baseOre, BlockState baseState, UBStoneType stoneType, String subStoneName, boolean useAlphaBlending) {
+        super(Properties.create(baseOre.getDefaultState().getMaterial()));
         this.baseOre = baseOre;
         this.baseState = baseState;
-        this.stone_type = stone_type;
-        this.sub_stone_name = sub_stone_name;
+        this.stone_type = stoneType;
+        this.sub_stone_name = subStoneName;
         this.useAlphaBlending = useAlphaBlending;
-        setRegistryName(UndergroundBiomes.modid + ":" + stone_type + "_ore_"
-                + baseOre.getRegistryName().toString().replace(":", "_") + "_" + sub_stone_name);
+        setRegistryName(UndergroundBiomes.MOD_ID + ":" + stoneType + "_ore_" + baseOre.getRegistryName().toString().replace(":", "_") + "_" + subStoneName);
+        if (useAlphaBlending)
+            BLOCK_TO_RENDER_TYPE.put(this, RenderType.getCutoutMipped());
+        else
+            BLOCK_TO_RENDER_TYPE.put(this, RenderType.getSolid());
     }
 
     @Override
@@ -62,7 +65,7 @@ public class UBOre extends Block implements UBBlock {
     @Override
     public BlockItem getItemBlock() {
         BlockItem itemBlock = new BlockItem(this, new Item.Properties().group(UndergroundBiomes.ORES_CREATIVE_TAB));
-        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.modid + ":", ""));
+        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.MOD_ID + ":", ""));
         return itemBlock;
     }
 
@@ -72,52 +75,22 @@ public class UBOre extends Block implements UBBlock {
     }
 
     @Override
-    protected void fillStateContainer(net.minecraft.state.StateContainer.Builder<Block, BlockState> builder) {
-
-        baseOre = Blocks.REDSTONE_ORE;
-
-        super.fillStateContainer(builder);
-
-        // This method gets called in our parent's constructor... So this would crash
-        // since baseOre would be null
-        if (baseOre == null) {
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        if (baseOre == null)
             return;
-        }
 
-        // Reflection to access private method on baseOre
-        try {
-            Method fillStateMethod = null;
-            fillStateMethod = baseOre.getClass().getDeclaredMethod("fillStateContainer",
-                    new Class[] { net.minecraft.state.StateContainer.Builder.class });
-            fillStateMethod.setAccessible(true);
-            fillStateMethod.invoke(baseOre, builder);
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(baseOre);
+        baseOre.getDefaultState().getProperties().forEach(builder::add);
     }
 
-    @Override
-    public BlockState getStateForPlacement(BlockState state, Direction facing, BlockState state2, IWorld world,
-            BlockPos pos1, BlockPos pos2, Hand hand) {
-        return baseOre.getStateForPlacement(state, facing, state2, world, pos1, pos2, hand);
-    }
 
     @Override
-    public BlockState getStateAtViewpoint(BlockState state, IBlockReader world, BlockPos pos, Vec3d viewpoint) {
+    public BlockState getStateAtViewpoint(BlockState state, IBlockReader world, BlockPos pos, Vector3d viewpoint) {
         return baseOre.getStateAtViewpoint(state, world, pos, viewpoint);
     }
 
     @Override
     public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
         return baseOre.getContainer(state, worldIn, pos);
-    }
-
-    @Override
-    public BlockState getExtendedState(BlockState state, IBlockReader world, BlockPos pos) {
-        return baseOre.getExtendedState(state, world, pos);
     }
 
     @Override
@@ -136,30 +109,24 @@ public class UBOre extends Block implements UBBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-            BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return baseOre.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer() {
-        return useAlphaBlending ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-    }
-
-    @Override
     public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, TileEntity te,
-            ItemStack stack) {
+                             ItemStack stack) {
         super.harvestBlock(worldIn, player, pos, state, te, stack);
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState p_220076_1_, Builder p_220076_2_) {
-        return baseOre.getDrops(p_220076_1_, p_220076_2_);
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        return baseOre.getDrops(state, builder);
     }
 
     @Override
-    public float getBlockHardness(BlockState blockState, IBlockReader worldIn, BlockPos pos) {
-        return baseOre.getBlockHardness(blockState, worldIn, pos);
+    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+        return baseOre.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
     }
 
     @Override
@@ -178,11 +145,11 @@ public class UBOre extends Block implements UBBlock {
     }
 
     @Override
-    public int getLightValue(BlockState state) {
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
         if (baseState == null)
-            return super.getLightValue(state);
+            return super.getLightValue(state, world, pos);
         else
-            return baseState.getLightValue();
+            return 0;
     }
 
     @Override

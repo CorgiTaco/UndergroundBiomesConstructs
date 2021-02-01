@@ -31,23 +31,23 @@ public class UBOreRegistrar {
     public static void registerOre(Block toRegisterAsOre) {
         for (IgneousVariant currentVariant : IgneousVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.IGNEOUS,
-                    currentVariant.getName(),
+                    currentVariant.toString(),
                     UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
-            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
+            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.toString(), ore);
         }
 
         for (MetamorphicVariant currentVariant : MetamorphicVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.METAMORPHIC,
-                    currentVariant.getName(),
+                    currentVariant.toString(),
                     UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
-            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
+            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.toString(), ore);
         }
 
         for (SedimentaryVariant currentVariant : SedimentaryVariant.values()) {
             UBOre ore = new UBOre(toRegisterAsOre, toRegisterAsOre.getDefaultState(), UBStoneType.SEDIMENTARY,
-                    currentVariant.getName(),
+                    currentVariant.toString(),
                     UBOreConfigManager.alphaBlendingCache.get(toRegisterAsOre.getRegistryName().toString()));
-            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.getName(), ore);
+            REGISTERED_ORES.put(toRegisterAsOre.getRegistryName().toString() + "/" + currentVariant.toString(), ore);
         }
     }
 
@@ -96,27 +96,27 @@ public class UBOreRegistrar {
         UBStone inBlockStone = (UBStone) inStone;
         if (inBlockStone.getStoneType() == UBStoneType.IGNEOUS) {
             if (REGISTERED_ORES.containsKey(
-                    original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.getName())) {
+                    original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.toString())) {
 
                 return REGISTERED_ORES.get(
-                        original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.getName())
+                        original.getBlock().getRegistryName().toString() + "/" + inBlockStone.igneous_variant.toString())
                         .getDefaultState();
             } else
                 return original;
         } else if (inBlockStone.getStoneType() == UBStoneType.METAMORPHIC) {
             if (REGISTERED_ORES.containsKey(original.getBlock().getRegistryName().toString() + "/"
-                    + inBlockStone.metamorphic_variant.getName())) {
+                    + inBlockStone.metamorphic_variant.toString())) {
 
                 return REGISTERED_ORES.get(original.getBlock().getRegistryName().toString() + "/"
-                        + inBlockStone.metamorphic_variant.getName()).getDefaultState();
+                        + inBlockStone.metamorphic_variant.toString()).getDefaultState();
             } else
                 return original;
         } else if (inBlockStone.getStoneType() == UBStoneType.SEDIMENTARY) {
             if (REGISTERED_ORES.containsKey(original.getBlock().getRegistryName().toString() + "/"
-                    + inBlockStone.sedimentary_variant.getName())) {
+                    + inBlockStone.sedimentary_variant.toString())) {
 
                 return REGISTERED_ORES.get(original.getBlock().getRegistryName().toString() + "/"
-                        + inBlockStone.sedimentary_variant.getName()).getDefaultState();
+                        + inBlockStone.sedimentary_variant.toString()).getDefaultState();
             } else
                 return original;
         } else

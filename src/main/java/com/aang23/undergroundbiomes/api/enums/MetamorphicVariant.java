@@ -41,8 +41,7 @@ public enum MetamorphicVariant implements IStringSerializable, Variant<Metamorph
     }
 
     @Override
-    public String getName() {
-        return toString();
+    public String getString() {
+        return name().toLowerCase();
     }
-
 }

@@ -11,7 +11,7 @@ import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 public class CobbleRecipeHandler implements IConditionSerializer {
     @Override
     public ResourceLocation getID() {
-        return new ResourceLocation(UndergroundBiomes.modid, "cobble_recipe_enabled");
+        return new ResourceLocation(UndergroundBiomes.MOD_ID, "cobble_recipe_enabled");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class CobbleRecipeHandler implements IConditionSerializer {
 
         @Override
         public ResourceLocation getID() {
-            return new ResourceLocation(UndergroundBiomes.modid, "cobble_recipe_enabled");
+            return new ResourceLocation(UndergroundBiomes.MOD_ID, "cobble_recipe_enabled");
         }
 
         @Override

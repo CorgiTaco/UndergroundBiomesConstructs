@@ -1,18 +1,12 @@
 package com.aang23.undergroundbiomes.blocks;
 
 import com.aang23.undergroundbiomes.UndergroundBiomes;
-import com.aang23.undergroundbiomes.blocks.UBCobble;
-import com.aang23.undergroundbiomes.api.enums.IgneousVariant;
-import com.aang23.undergroundbiomes.api.enums.MetamorphicVariant;
-import com.aang23.undergroundbiomes.api.enums.SedimentaryVariant;
-import com.aang23.undergroundbiomes.api.enums.UBBlock;
-import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
-import com.aang23.undergroundbiomes.api.enums.UBStoneType;
-
+import com.aang23.undergroundbiomes.api.enums.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
@@ -29,21 +23,21 @@ public class UBCobbleStairs extends StairsBlock implements UBBlock {
         super(new UBCobble(igneous_variant).getDefaultState(), Properties.create(Material.ROCK));
         this.igneous_variant = igneous_variant;
         this.stone_type = UBStoneType.IGNEOUS;
-        setRegistryName(UndergroundBiomes.modid + ":igneous_cobble_stairs_" + igneous_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":igneous_cobble_stairs_" + igneous_variant.toString().toLowerCase());
     }
 
     public UBCobbleStairs(MetamorphicVariant metamorphic_variant) {
         super(new UBCobble(metamorphic_variant).getDefaultState(), Properties.create(Material.ROCK));
         this.metamorphic_variant = metamorphic_variant;
         this.stone_type = UBStoneType.METAMORPHIC;
-        setRegistryName(UndergroundBiomes.modid + ":metamorphic_cobble_stairs_" + metamorphic_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":metamorphic_cobble_stairs_" + metamorphic_variant.toString().toLowerCase());
     }
 
     public UBCobbleStairs(SedimentaryVariant sedimentary_variant) {
         super(new UBCobble(sedimentary_variant).getDefaultState(), Properties.create(Material.ROCK));
         this.sedimentary_variant = sedimentary_variant;
         this.stone_type = UBStoneType.SEDIMENTARY;
-        setRegistryName(UndergroundBiomes.modid + ":sedimentary_cobble_stairs_" + sedimentary_variant.getName().toLowerCase());
+        setRegistryName(UndergroundBiomes.MOD_ID + ":sedimentary_cobble_stairs_" + sedimentary_variant.toString().toLowerCase());
     }
 
     @Override
@@ -54,7 +48,7 @@ public class UBCobbleStairs extends StairsBlock implements UBBlock {
     @Override
     public BlockItem getItemBlock() {
         BlockItem itemBlock = new BlockItem(this, new Item.Properties().group(UndergroundBiomes.CREATIVE_TAB));
-        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.modid + ":", ""));
+        itemBlock.setRegistryName(this.getRegistryName().toString().replace(UndergroundBiomes.MOD_ID + ":", ""));
         return itemBlock;
     }
 
@@ -64,30 +58,30 @@ public class UBCobbleStairs extends StairsBlock implements UBBlock {
     }
 
     @Override
-    public float getBlockHardness(BlockState blockState, IBlockReader worldIn, BlockPos pos) {
+    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
         switch (stone_type) {
-        case IGNEOUS:
-            return igneous_variant.getHardness();
-        case METAMORPHIC:
-            return metamorphic_variant.getHardness();
-        case SEDIMENTARY:
-            return sedimentary_variant.getHardness();
-        default:
-            return super.getBlockHardness(blockState, worldIn, pos);
+            case IGNEOUS:
+                return igneous_variant.getHardness();
+            case METAMORPHIC:
+                return metamorphic_variant.getHardness();
+            case SEDIMENTARY:
+                return sedimentary_variant.getHardness();
+            default:
+                return super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
         }
     }
 
     @Override
     public float getExplosionResistance() {
         switch (stone_type) {
-        case IGNEOUS:
-            return igneous_variant.getResistance();
-        case METAMORPHIC:
-            return metamorphic_variant.getResistance();
-        case SEDIMENTARY:
-            return sedimentary_variant.getResistance();
-        default:
-            return super.getExplosionResistance();
+            case IGNEOUS:
+                return igneous_variant.getResistance();
+            case METAMORPHIC:
+                return metamorphic_variant.getResistance();
+            case SEDIMENTARY:
+                return sedimentary_variant.getResistance();
+            default:
+                return super.getExplosionResistance();
         }
     }
 

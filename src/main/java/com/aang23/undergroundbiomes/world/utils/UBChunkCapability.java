@@ -40,7 +40,7 @@ public interface UBChunkCapability {
         @Override
         public INBT writeNBT(Capability<UBChunkCapability> capability, UBChunkCapability instance,
         Direction side) {
-            return new StringNBT(instance.getUBMarker() != null ? instance.getUBMarker() : "");
+            return StringNBT.valueOf(instance.getUBMarker() != null ? instance.getUBMarker() : "");
         }
     }
 }

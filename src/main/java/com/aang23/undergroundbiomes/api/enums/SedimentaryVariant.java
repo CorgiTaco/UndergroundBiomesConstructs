@@ -36,9 +36,9 @@ public enum SedimentaryVariant implements IStringSerializable, Variant<Sedimenta
     return name().toLowerCase();
   }
 
-  @Override
-  public String getName() {
-    return toString();
-  }
 
+    @Override
+    public String getString() {
+        return name().toLowerCase();
+    }
 }

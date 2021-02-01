@@ -19,6 +19,7 @@
 package com.aang23.undergroundbiomes.world.strata.noise;
 
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -65,7 +66,7 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
    * @param world World to construct this generator for
    */
   public PerlinNoiseGenerator(World world) {
-    this(new Random(world.getSeed()));
+    this(new Random(((ServerWorld) world).getSeed()));
   }
 
   /**

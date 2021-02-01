@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 
 import com.cedarsoftware.util.io.JsonWriter;
 
+import net.minecraft.world.World;
+import net.minecraft.world.storage.FolderName;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,7 +18,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.server.ServerWorld;
 
 public class WorldConfig {
-    public int dimensionId;
+    public String dimensionId;
 
     private IWorld configWorld;
     private File configPath;
@@ -24,10 +26,9 @@ public class WorldConfig {
     public JSONObject config;
 
     public WorldConfig(IWorld world) {
-            dimensionId = world.getDimension().getType().getId();
+            dimensionId = ((World) world).getDimensionKey().getLocation().toString();
             configWorld = world;
-            configPath = new File(world.getDimension().getType().getDirectory(
-                    ((ServerWorld) world).getSaveHandler().getWorldDirectory()), "undergroundbiomes.json");
+            configPath = new File(((ServerWorld) world).getServer().func_240776_a_(FolderName.LEVEL_DAT) + "undergroundbiomes.json");
             config = new JSONObject();
     }
 

@@ -1,30 +1,15 @@
 package com.aang23.undergroundbiomes;
 
+import com.aang23.undergroundbiomes.api.enums.*;
+import com.aang23.undergroundbiomes.blocks.*;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import com.aang23.undergroundbiomes.api.enums.IgneousVariant;
-import com.aang23.undergroundbiomes.api.enums.MetamorphicVariant;
-import com.aang23.undergroundbiomes.api.enums.SedimentaryVariant;
-import com.aang23.undergroundbiomes.api.enums.UBBlock;
-import com.aang23.undergroundbiomes.api.enums.UBStoneStyle;
-import com.aang23.undergroundbiomes.blocks.UBBrick;
-import com.aang23.undergroundbiomes.blocks.UBCobble;
-import com.aang23.undergroundbiomes.blocks.UBCobbleStairs;
-import com.aang23.undergroundbiomes.blocks.UBCobbleWall;
-import com.aang23.undergroundbiomes.blocks.UBGravel;
-import com.aang23.undergroundbiomes.blocks.UBInfestedStone;
-import com.aang23.undergroundbiomes.blocks.UBSand;
-import com.aang23.undergroundbiomes.blocks.UBStone;
-import com.aang23.undergroundbiomes.blocks.UBStoneButton;
-import com.aang23.undergroundbiomes.blocks.UBStoneStairs;
-import com.mojang.datafixers.util.Pair;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
 
 public class UBBlocks {
         private static Map<Pair<UBStoneStyle, IgneousVariant>, UBBlock> igneous_blocks = new HashMap<Pair<UBStoneStyle, IgneousVariant>, UBBlock>();
@@ -34,7 +19,7 @@ public class UBBlocks {
         public static void initialSetup() {
                 for (IgneousVariant currentVariant : IgneousVariant.values()) {
                         igneous_blocks.put(new Pair<UBStoneStyle, IgneousVariant>(UBStoneStyle.STONE, currentVariant),
-                                        new UBStone(currentVariant));
+                                new UBStone(currentVariant));
                         igneous_blocks.put(new Pair<UBStoneStyle, IgneousVariant>(UBStoneStyle.BRICK, currentVariant),
                                         new UBBrick(currentVariant));
                         igneous_blocks.put(new Pair<UBStoneStyle, IgneousVariant>(UBStoneStyle.COBBLE, currentVariant),
