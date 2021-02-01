@@ -42,7 +42,19 @@ public class UBOre extends Block implements UBBlock {
 
     public static final IdentityHashMap<Block, RenderType> BLOCK_TO_RENDER_TYPE = new IdentityHashMap<>();
 
-    public UBOre(@Nullable Block baseOre, BlockState baseState, UBStoneType stoneType, String subStoneName, boolean useAlphaBlending) {
+
+    public static UBOre create(Block baseOree, BlockState baseState, UBStoneType stoneType, String subStoneName, boolean useAlphaBlending) {
+        return new UBOre(baseOree, baseState, stoneType, subStoneName, useAlphaBlending) {
+            @Override
+            protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+                if (baseOree != null)
+                    baseOree.getStateContainer().getProperties().forEach(builder::add);
+            }
+        };
+    }
+
+
+    private UBOre(@Nullable Block baseOre, BlockState baseState, UBStoneType stoneType, String subStoneName, boolean useAlphaBlending) {
         super(Properties.create(baseOre.getDefaultState().getMaterial()));
         this.baseOre = baseOre;
         this.baseState = baseState;
@@ -95,14 +107,6 @@ public class UBOre extends Block implements UBBlock {
             return super.getContainer(state, worldIn, pos);
         else
             return baseOre.getContainer(state, worldIn, pos);
-    }
-
-    @Override
-    public StateContainer<Block, BlockState> getStateContainer() {
-        if (baseOre == null)
-            return super.getStateContainer();
-        else
-            return baseOre.getStateContainer();
     }
 
     @Override
